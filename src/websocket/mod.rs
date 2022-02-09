@@ -6,17 +6,19 @@ pub(crate) mod util;
 use std::pin::Pin;
 
 use async_trait::async_trait;
-use async_tungstenite::{
+#[cfg(feature = "tokio-openssl")]
+use async_tungstenite_tokio_openssl::{
     tokio::{connect_async, TokioAdapter},
     tungstenite::Message,
     WebSocketStream,
 };
 use futures::prelude::*;
 
+#[cfg(feature = "tokio-openssl")]
 type Socket = WebSocketStream<
-    async_tungstenite::stream::Stream<
+    async_tungstenite_tokio_openssl::stream::Stream<
         TokioAdapter<tokio::net::TcpStream>,
-        TokioAdapter<Pin<Box<tokio_openssl::SslStream<tokio::net::TcpStream>>>>,
+        TokioAdapter<Pin<Box<real_tokio_openssl::SslStream<tokio::net::TcpStream>>>>,
     >,
 >;
 

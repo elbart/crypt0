@@ -84,9 +84,8 @@ impl Crawler {
 
 #[cfg(test)]
 mod tests {
-    use crate::exchange::Exchange;
-
     use super::Crawler;
+    use crate::exchange::Exchange;
 
     #[tokio::test]
     async fn crawler_baseline() {

@@ -1,5 +1,6 @@
 use async_trait::async_trait;
-use async_tungstenite::tungstenite::Message;
+#[cfg(feature = "tokio-openssl")]
+use async_tungstenite_tokio_openssl::tungstenite::Message;
 
 use super::{util::baseline_ws_client, WSClient, WSCrypto};
 
